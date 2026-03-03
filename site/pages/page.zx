@@ -370,9 +370,6 @@ pub fn Page(ctx: zx.PageContext) zx.Component {
 
     return (
         <div @allocator={allocator}>
-            <style @escaping={.none}>
-                {@embedFile("../assets/home.css")}
-            </style>
             <nav class="nav">
                 <div class="nav-content">
                     <a href={root.configs.main_site_url} class="nav-logo">Ziex</a>
