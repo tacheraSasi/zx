@@ -114,12 +114,39 @@ body {
     flex-shrink: 0;
 }
 
+.pg-nav-left {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    flex-shrink: 0;
+}
+
 .pg-nav-logo {
     font-size: 1.15rem;
     font-weight: 800;
     color: var(--zx-white);
     text-decoration: none;
     letter-spacing: -0.02em;
+}
+
+.pg-nav-links {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding-left: 1.25rem;
+    border-left: 1px solid var(--zx-border);
+}
+
+.pg-nav-link {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--zx-gray-light);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.pg-nav-link:hover {
+    color: var(--zx-white);
 }
 
 .pg-nav-actions {

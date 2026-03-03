@@ -24,7 +24,13 @@ pub fn Page(ctx: zx.PageContext) zx.Component {
 pub fn TopNavigation(ctx: *zx.ComponentCtx(struct {})) zx.Component {
     return (
         <nav @allocator={ctx.allocator}  class="pg-nav">
-            <a href="/" class="pg-nav-logo">Ziex</a>
+            <div class="pg-nav-left">
+                <a href="/" class="pg-nav-logo">Ziex</a>
+                <div class="pg-nav-links">
+                    <a href="/learn" class="pg-nav-link">Docs</a>
+                    // <a href="/examples" class="pg-nav-link">Examples</a>
+                </div>
+            </div>
             <ActionButtons @rendering={.client} />
             <div class="pg-nav-actions">
                 // <a href="/learn" class="pg-nav-btn">Docs</a>
