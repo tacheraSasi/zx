@@ -1,5 +1,5 @@
 const std = @import("std");
-pub const BuiltinAttribute = @import("Attribute.zig").Builtin;
+pub const BuiltinAttribute = @import("attributes.zig").builtin;
 
 pub const PageMethod = enum {
     GET,

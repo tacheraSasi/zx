@@ -8,73 +8,13 @@ const element = @import("element.zig");
 const plfm = @import("platform.zig");
 const prp = @import("props.zig");
 
-// -- Core Language --//
-pub const Ast = @import("core/Ast.zig");
-pub const Parse = @import("core/Parse.zig");
-
 pub const devtool = @import("devtool.zig");
 pub const cache = @import("runtime/core//Cache.zig");
 
+// -- Core Language --//
+pub const Ast = @import("core/Ast.zig");
+pub const Parse = @import("core/Parse.zig");
 pub const ElementTag = element.Tag;
-
-/// Escapes: & < > " '
-fn escapeHtmlAttrVal(writer: *std.Io.Writer, value: []const u8) !void {
-    for (value) |char| {
-        switch (char) {
-            '&' => try writer.writeAll("&amp;"),
-            '<' => try writer.writeAll("&lt;"),
-            '>' => try writer.writeAll("&gt;"),
-            '"' => try writer.writeAll("&quot;"),
-            '\'' => try writer.writeAll("&#x27;"),
-            else => try writer.writeByte(char),
-        }
-    }
-}
-
-/// Escapes: & < >
-fn escapHtmlTextNode(writer: *std.Io.Writer, value: []const u8) !void {
-    for (value) |char| {
-        switch (char) {
-            '&' => try writer.writeAll("&amp;"),
-            '<' => try writer.writeAll("&lt;"),
-            '>' => try writer.writeAll("&gt;"),
-            else => try writer.writeByte(char),
-        }
-    }
-}
-
-fn unescapeHtmlToWriter(writer: *std.Io.Writer, value: []const u8) !void {
-    var i: usize = 0;
-    while (i < value.len) {
-        if (value[i] == '&') {
-            // Check for HTML entities
-            if (i + 4 <= value.len and std.mem.eql(u8, value[i .. i + 4], "&lt;")) {
-                try writer.writeByte('<');
-                i += 4;
-            } else if (i + 4 <= value.len and std.mem.eql(u8, value[i .. i + 4], "&gt;")) {
-                try writer.writeByte('>');
-                i += 4;
-            } else if (i + 5 <= value.len and std.mem.eql(u8, value[i .. i + 5], "&amp;")) {
-                try writer.writeByte('&');
-                i += 5;
-            } else if (i + 6 <= value.len and std.mem.eql(u8, value[i .. i + 6], "&quot;")) {
-                try writer.writeByte('"');
-                i += 6;
-            } else if (i + 6 <= value.len and std.mem.eql(u8, value[i .. i + 6], "&#x27;")) {
-                try writer.writeByte('\'');
-                i += 6;
-            } else {
-                // Not a recognized entity, write the ampersand as-is
-                try writer.writeByte(value[i]);
-                i += 1;
-            }
-        } else {
-            try writer.writeByte(value[i]);
-            i += 1;
-        }
-    }
-}
-
 pub const Component = union(enum) {
     pub const Serializable = devtool.ComponentSerializable;
 
@@ -633,6 +573,64 @@ pub const Component = union(enum) {
         try serializable.serialize(w);
     }
 };
+
+/// Escapes: & < > " '
+fn escapeHtmlAttrVal(writer: *std.Io.Writer, value: []const u8) !void {
+    for (value) |char| {
+        switch (char) {
+            '&' => try writer.writeAll("&amp;"),
+            '<' => try writer.writeAll("&lt;"),
+            '>' => try writer.writeAll("&gt;"),
+            '"' => try writer.writeAll("&quot;"),
+            '\'' => try writer.writeAll("&#x27;"),
+            else => try writer.writeByte(char),
+        }
+    }
+}
+
+/// Escapes: & < >
+fn escapHtmlTextNode(writer: *std.Io.Writer, value: []const u8) !void {
+    for (value) |char| {
+        switch (char) {
+            '&' => try writer.writeAll("&amp;"),
+            '<' => try writer.writeAll("&lt;"),
+            '>' => try writer.writeAll("&gt;"),
+            else => try writer.writeByte(char),
+        }
+    }
+}
+
+fn unescapeHtmlToWriter(writer: *std.Io.Writer, value: []const u8) !void {
+    var i: usize = 0;
+    while (i < value.len) {
+        if (value[i] == '&') {
+            // Check for HTML entities
+            if (i + 4 <= value.len and std.mem.eql(u8, value[i .. i + 4], "&lt;")) {
+                try writer.writeByte('<');
+                i += 4;
+            } else if (i + 4 <= value.len and std.mem.eql(u8, value[i .. i + 4], "&gt;")) {
+                try writer.writeByte('>');
+                i += 4;
+            } else if (i + 5 <= value.len and std.mem.eql(u8, value[i .. i + 5], "&amp;")) {
+                try writer.writeByte('&');
+                i += 5;
+            } else if (i + 6 <= value.len and std.mem.eql(u8, value[i .. i + 6], "&quot;")) {
+                try writer.writeByte('"');
+                i += 6;
+            } else if (i + 6 <= value.len and std.mem.eql(u8, value[i .. i + 6], "&#x27;")) {
+                try writer.writeByte('\'');
+                i += 6;
+            } else {
+                // Not a recognized entity, write the ampersand as-is
+                try writer.writeByte(value[i]);
+                i += 1;
+            }
+        } else {
+            try writer.writeByte(value[i]);
+            i += 1;
+        }
+    }
+}
 
 pub const Element = struct {
     pub const Attribute = struct {
@@ -1447,7 +1445,7 @@ pub const ComponentContext = ComponentCtx(void);
 pub const EventContext = ctxs.EventContext;
 pub const ActionContext = ctxs.ActionContext;
 pub const EventHandler = *const fn (event: EventContext) void;
-pub const BuiltinAttribute = @import("Attribute.zig").Builtin;
+pub const BuiltinAttribute = @import("attributes.zig").builtin;
 pub const Platform = plfm.Platform;
 
 pub fn ActionResult(comptime T: type) type {

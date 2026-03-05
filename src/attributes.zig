@@ -1,8 +1,6 @@
 const std = @import("std");
 
-const Attribute = @This();
-
-pub const Builtin = struct {
+pub const builtin = struct {
     pub const Rendering = enum {
         /// Client-side React.js
         react,
