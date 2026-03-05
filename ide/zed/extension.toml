@@ -4,14 +4,14 @@ description = "ZX support."
 version = "0.1.0-dev.751"
 schema_version = 1
 authors = ["Nurul Huda (Apon) <me@nurulhudaapon.com>"]
-repository = "https://github.com/nurulhudaapon/ziex"
+repository = "https://github.com/ziex-dev/ziex"
 
 [language_servers.zls]
 name = "zls"
 language = "ZX"
 
 [grammars.zx]
-repository = "https://github.com/nurulhudaapon/ziex"
+repository = "https://github.com/ziex-dev/ziex"
 rev = "main"
 path = "pkg/tree-sitter-zx"
 
@@ -19,7 +19,7 @@ path = "pkg/tree-sitter-zx"
 # rev = "feat/mdzx"
 
 [grammars.mdzx]
-repository = "https://github.com/nurulhudaapon/ziex"
+repository = "https://github.com/ziex-dev/ziex"
 rev = "main"
 path = "pkg/tree-sitter-mdzx"
 

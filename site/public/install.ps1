@@ -138,7 +138,7 @@ function Install-ZX {
   # if ($IsBaseline) {
   #   $Target = "zx-windows-$Arch-baseline"
   # }
-  $BaseURL = "https://github.com/nurulhudaapon/ziex/releases"
+  $BaseURL = "https://github.com/ziex-dev/ziex/releases"
   $URL = "$BaseURL/$(if ($Version -eq "latest") { "latest/download" } else { "download/$Version" })/$Target.zip"
 
   $ZipPath = "${ZxBin}\$Target.zip"
@@ -207,7 +207,7 @@ function Install-ZX {
   if ($LASTEXITCODE -eq 1073741795) { # STATUS_ILLEGAL_INSTRUCTION
     if ($IsBaseline) {
       Write-Output "Install Failed - zx.exe (baseline) is not compatible with your CPU.`n"
-      Write-Output "Please open a GitHub issue with your CPU model:`nhttps://github.com/nurulhudaapon/ziex/issues/new/choose`n"
+      Write-Output "Please open a GitHub issue with your CPU model:`nhttps://github.com/ziex-dev/ziex/issues/new/choose`n"
       return 1
     }
 

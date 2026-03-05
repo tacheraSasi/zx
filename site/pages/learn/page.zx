@@ -332,7 +332,7 @@ fn EditorSetup(allocator: zx.Allocator) zx.Component {
                     <p><strong>Features:</strong> Syntax highlighting, IntelliSense, error diagnostics, bracket matching, and code folding.</p>
                 </div>
                 <div class="simple-tab-content" id="content-editor-neovim">
-                    <p>With <a href="https://github.com/folke/lazy.nvim" target="_blank" rel="noopener noreferrer">lazy.nvim</a>, add <code>nurulhudaapon/ziex</code> as a plugin with <code>nvim-treesitter</code> as a dependency.</p>
+                    <p>With <a href="https://github.com/folke/lazy.nvim" target="_blank" rel="noopener noreferrer">lazy.nvim</a>, add <code>{zx.info.repository["https://github.com/".len..]}</code> as a plugin with <code>nvim-treesitter</code> as a dependency.</p>
                     <p>See the <a href=`{zx.info.repository}/tree/main/ide/neovim` target="_blank" rel="noopener noreferrer">Neovim setup guide</a> for the full configuration.</p>
                     <p><strong>Features:</strong> Tree-sitter syntax highlighting, LSP support, and file icons.</p>
                 </div>

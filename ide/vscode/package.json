@@ -18,7 +18,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/nurulhudaapon/ziex"
+    "url": "https://github.com/ziex-dev/ziex"
   },
   "engines": {
     "vscode": "^1.99.0"

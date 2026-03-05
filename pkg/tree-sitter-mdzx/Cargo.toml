@@ -7,7 +7,7 @@ license = "MIT"
 readme = "README.md"
 keywords = ["incremental", "parsing", "tree-sitter", "zx"]
 categories = ["parser-implementations", "parsing", "text-editors"]
-repository = "https://github.com/nurulhudaapon/ziex"
+repository = "https://github.com/ziex-dev/ziex"
 edition = "2021"
 autoexamples = false
 

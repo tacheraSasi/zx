@@ -3,7 +3,7 @@
     .version = "0.1.0-dev.751",
     .jsglue_version = "0.1.0-dev.727",
     .description = "ZX is a framework for building web applications with Zig.",
-    .repository = "https://github.com/nurulhudaapon/ziex",
+    .repository = "https://github.com/ziex-dev/ziex",
     .homepage = "https://ziex.dev",
     .fingerprint = 0xcad77a8d2a3389f2,
     .minimum_zig_version = "0.15.2",

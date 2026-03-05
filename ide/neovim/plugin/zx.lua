@@ -39,7 +39,7 @@ local ok, parsers = pcall(require, "nvim-treesitter.parsers")
 if ok then
   local config = {
     install_info = {
-      url = "https://github.com/nurulhudaapon/ziex",
+      url = "https://github.com/ziex-dev/ziex",
       files = { "pkg/tree-sitter-zx/src/parser.c" },
       branch = "main",
       generate_requires_npm = false,

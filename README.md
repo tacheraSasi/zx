@@ -175,8 +175,8 @@ const zx = @import("zx");
 
 ## Related Projects
 
-* [Codeberg Mirror](https://codeberg.org/nurulhudaapon/ziex) - ZX repository mirror on Codeberg
-* [ziex.dev](https://github.com/nurulhudaapon/ziex/tree/main/site) - Official documentation site of ZX made using ZX.
+* [Codeberg Mirror](https://codeberg.org/ziex-dev/ziex) - ZX repository mirror on Codeberg
+* [ziex.dev](https://github.com/ziex-dev/ziex/tree/main/site) - Official documentation site of ZX made using ZX.
 * [example-blog](https://github.com/ziex-dev/example-blog) - Demo blog web application built with ZX
 * [zx-numbers-game](https://github.com/Andrew-Velox/zx-numbers-game) - ZX numbers game
 

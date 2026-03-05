@@ -91,7 +91,7 @@ zig build zx -- fmt .
 
 ## Contributing
 
-Contributions are welcome! Feel free to open issues or pull requests. For feature requests, bug reports, or questions, see the [Ziex Repo](https://github.com/nurulhudaapon/ziex).
+Contributions are welcome! Feel free to open issues or pull requests. For feature requests, bug reports, or questions, see the [Ziex Repo](https://github.com/ziex-dev/ziex).
 
 
 
@@ -101,5 +101,5 @@ Contributions are welcome! Feel free to open issues or pull requests. For featur
 - [Discord](https://ziex.dev/r/discord)
 - [Topic on Ziggit](https://ziex.dev/r/ziggit)
 - [Project on Zig Discord Community](https://ziex.dev/r/zig-discord) (Join Zig Discord first: https://discord.gg/zig)
-- [GitHub](https://github.com/nurulhudaapon/ziex)
+- [GitHub](https://github.com/ziex-dev/ziex)
 - [Zig Language](https://ziglang.org/)

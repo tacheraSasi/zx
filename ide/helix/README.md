@@ -21,7 +21,7 @@ args = ["zls"]
 
 [[grammar]]
 name = "zx"
-source = { git = "https://github.com/nurulhudaapon/ziex", rev = "main", subpath = "pkg/tree-sitter-zx" }
+source = { git = "https://github.com/ziex-dev/ziex", rev = "main", subpath = "pkg/tree-sitter-zx" }
 ```
 
 ---
