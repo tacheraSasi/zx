@@ -1149,7 +1149,7 @@ pub fn Handler(comptime AppCtxType: type) type {
             };
 
             if (async_components.len > 0) {
-                res.chunk(Component.streaming_bootstrap_script) catch |err| {
+                res.chunk(rndr.streaming_bootstrap_script) catch |err| {
                     std.debug.print("Error sending bootstrap script: {}\n", .{err});
                     return err;
                 };
@@ -1171,7 +1171,7 @@ pub fn Handler(comptime AppCtxType: type) type {
                 var remaining = std.atomic.Value(usize).init(async_components.len);
 
                 const TaskContext = struct {
-                    async_comp: Component.AsyncComponent,
+                    async_comp: rndr.AsyncComponent,
                     result: *AsyncResult,
                     remaining: *std.atomic.Value(usize),
 
@@ -1488,6 +1488,7 @@ const zx_options = @import("zx_options");
 const zx = @import("../../root.zig");
 const httpz_adapter = @import("adapter.zig");
 const pubsub = @import("pubsub.zig");
+const rndr = @import("render.zig");
 
 const Allocator = std.mem.Allocator;
 const Component = zx.Component;

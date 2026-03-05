@@ -1,4 +1,9 @@
 const std = @import("std");
+
+const pltfm = @import("platform.zig");
+const platform = pltfm.platform;
+const Client = @import("runtime/client/Client.zig");
+
 pub const BuiltinAttribute = @import("attributes.zig").builtin;
 
 pub const PageMethod = enum {
@@ -62,3 +67,10 @@ pub const ProxyOptions = struct {
     /// Whether to continue to the next handler if proxy doesn't handle the request
     pass_through: bool = true,
 };
+
+/// Default std_options for zx apps.
+/// Re-export this in your main.zig:
+/// ```zig
+/// pub const std_options = zx.std_options;
+/// ```
+pub const std_options: std.Options = .{ .logFn = if (platform == .browser) Client.logFn else std.log.defaultLog };

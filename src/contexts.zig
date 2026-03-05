@@ -1,15 +1,19 @@
 const std = @import("std");
 const builtin = @import("builtin");
 
+const zx = @import("root.zig");
 const Request = @import("runtime/core/Request.zig");
 const Response = @import("runtime/core/Response.zig");
 const pltfm = @import("platform.zig");
-const platform = pltfm.platform;
 const client = @import("runtime/client/window.zig");
 
+const Component = zx.Component;
+const Signal = zx.Signal;
+const SignalInstance = zx.SignalInstance;
 const Allocator = std.mem.Allocator;
 
-const client_allocator = if (builtin.os.tag == .freestanding) std.heap.wasm_allocator else std.heap.page_allocator;
+const platform = zx.platform;
+const client_allocator = zx.client_allocator;
 
 /// Context passed to proxy middleware functions.
 /// Use `state.set()` to pass typed data to downstream route/page handlers.
@@ -110,3 +114,34 @@ pub const ActionContext = struct {
         return .{ .action_ref = action_ref };
     }
 };
+
+/// Builder returned by ctx.Signal(T) - call .init(initial) to create the signal.
+fn SignalBuilder(comptime T: type) type {
+    return struct {
+        const Self = @This();
+        _id: u16,
+
+        /// Initialize the signal with an initial value.
+        /// Usage: `const count = ctx.Signal(i32).init(0);`
+        pub fn init(self: Self, initial: T) SignalInstance(T) {
+            return Signal(T).create(self._id, initial);
+        }
+    };
+}
+
+pub fn ComponentCtx(comptime PropsType: type) type {
+    return struct {
+        const Self = @This();
+        props: PropsType,
+        allocator: Allocator,
+        children: ?Component = null,
+        /// Instance ID - automatically injected by Client.zig at runtime
+        _id: u16 = 0,
+
+        /// Get a signal builder for this component instance.
+        /// Usage: `const count = ctx.Signal(i32).init(ctx.props.initial);`
+        pub fn Signal(self: Self, comptime T: type) SignalBuilder(T) {
+            return .{ ._id = self._id };
+        }
+    };
+}

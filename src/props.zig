@@ -1,6 +1,7 @@
 const std = @import("std");
 
 const pltfm = @import("platform.zig");
+const hydration = @import("runtime/client/hydration.zig");
 const platform = pltfm.platform;
 
 /// Coerce props to the target struct type, handling defaults
@@ -296,3 +297,8 @@ pub fn propsSerializer(comptime Props: type, allocator: std.mem.Allocator, props
         }.write,
     };
 }
+
+pub const prop = struct {
+    pub const serialize = serializePositional;
+    pub const parse = hydration.parseProps;
+};
